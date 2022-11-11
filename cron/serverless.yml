@@ -1,0 +1,19 @@
+service: cronjob-service
+
+frameworkVersion: '3'
+
+useDotenv: true
+
+provider:
+  name: aws
+  stage: dev
+  region: us-east-1
+  profile: serverless
+  runtime: nodejs16.x
+
+functions:
+  scheduler:
+    handler: handler.execute
+    events:
+      - schedule:
+          rate: rate(1 minute)
